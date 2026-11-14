@@ -1,4 +1,10 @@
-out/
-.freebuff/
+# everything in this shared workspace that is not the entry itself
 *-kit/
-node_modules/
+*-entry/
+harness-src/
+.makefun/
+.freebuff/
+src/
+*.tar.gz
+.env
+makefun-keypair.json

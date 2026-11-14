@@ -18,12 +18,18 @@ const y = (r) => M + r * (CELL + GAP);
 // Each icon draws inside a 100x100 box.
 const icons = {
   handshake: `
-    <path d="M2 45 L28 39 L28 61 L2 55 Z" fill="${BLUE}"/>
-    <path d="M98 43 L72 37 L72 59 L98 53 Z" fill="${RED}"/>
-    <rect x="24" y="41" width="30" height="18" rx="9" fill="${INK}"/>
-    <rect x="46" y="45" width="30" height="18" rx="9" fill="${INK}"/>
-    <path d="M38 42 L46 32 L55 32 L50 43 Z" fill="${INK}"/>
-    <path d="M24 50 H34 M66 54 H76" stroke="${PAPER}" stroke-width="3" stroke-linecap="round"/>`,
+    <g>
+      <rect x="6" y="26" width="52" height="34" rx="10" fill="${BLUE}"/>
+      <path d="M20 58 L20 74 L38 58 Z" fill="${BLUE}"/>
+      <circle cx="22" cy="43" r="3.4" fill="${PAPER}"/>
+      <circle cx="32" cy="43" r="3.4" fill="${PAPER}"/>
+      <circle cx="42" cy="43" r="3.4" fill="${PAPER}"/>
+      <rect x="44" y="50" width="50" height="30" rx="9" fill="${RED}"/>
+      <path d="M80 78 L80 92 L64 78 Z" fill="${RED}"/>
+      <circle cx="59" cy="65" r="3" fill="${PAPER}"/>
+      <circle cx="69" cy="65" r="3" fill="${PAPER}"/>
+      <circle cx="79" cy="65" r="3" fill="${PAPER}"/>
+    </g>`,
   plane: `
     <g transform="translate(50 50) rotate(38)">
       <path d="M0 -34 C4 -34 6 -26 6 -14 L6 4 L26 16 L26 22 L6 16 L6 26 L14 32 L14 36 L0 33 L-14 36 L-14 32 L-6 26 L-6 16 L-26 22 L-26 16 L-6 4 L-6 -14 C-6 -26 -4 -34 0 -34 Z" fill="${INK}"/>
@@ -156,8 +162,8 @@ const stories = [
   {
     kicker: 'AFRICA',
     icon: 'bowl',
-    headline: ['DR CONGO:', '30M FACE HUNGER'],
-    fact: 'UN projects a record by 2027; Ebola funds miss the front line',
+    headline: ['DR CONGO:', '30M GO HUNGRY'],
+    fact: 'UN projects 30.3M hungry by 2027; Ebola funds miss the front line',
   },
 ];
 
@@ -188,8 +194,10 @@ function wrap(text, budget) {
 function storyCell(s, i) {
   const col = (i + 1) % 3;
   const row = Math.floor((i + 1) / 3);
-  const head = wrap(s.headline.join(' '), 16);
-  const size = head.length > 2 ? 23 : 27;
+  const raw = s.headline;
+  let head = raw.flatMap((l) => wrap(l, 14));
+  let size = 27;
+  if (head.length > 2) { size = 23; head = raw.flatMap((l) => wrap(l, 16)); }
   const lead = size === 27 ? 30 : 26;
   const factSize = 12.5;
   const facts = wrap(s.fact, 41);
