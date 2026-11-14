@@ -1,7 +1,4 @@
-tiny-chess-01-kit/
-*-kit/
+out/
 .freebuff/
-src/
-*.tar.gz
-.env
-makefun-keypair.json
+*-kit/
+node_modules/
