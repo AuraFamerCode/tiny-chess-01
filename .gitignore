@@ -1,8 +1,8 @@
-# everything in this shared workspace that is not the entry itself
 *-kit/
 *-entry/
 harness-src/
-.makefun/
+.makefun/*
+!.makefun/owner.json
 .freebuff/
 src/
 *.tar.gz
